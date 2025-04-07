@@ -45,7 +45,39 @@ y_pred = model.predict(X_test_tfidf)
 
 # Evaluar el rendimiento del modelo
 accuracy = accuracy_score(y_test, y_pred)
-print(f"Precisión del modelo: {accuracy*100:.2f}%")
+print(f"Precisión del modelo Naive Bayes: {accuracy*100:.2f}%")
 
 # Mostrar el reporte de clasificación
 print(classification_report(y_test, y_pred))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+# Crear el modelo
+arbol_model = DecisionTreeClassifier(random_state=42)
+
+# Entrenarlo con los datos vectorizados
+arbol_model.fit(X_train_tfidf, y_train)
+
+# Predecir sobre el conjunto de prueba
+y_pred_arbol = arbol_model.predict(X_test_tfidf)
+
+# Evaluar el rendimiento
+accuracy_arbol = accuracy_score(y_test, y_pred_arbol)
+print(f"Precisión del Árbol de Decisión: {accuracy_arbol * 100:.2f}%")
+print(classification_report(y_test, y_pred_arbol))
